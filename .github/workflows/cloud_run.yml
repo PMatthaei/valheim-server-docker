@@ -57,4 +57,4 @@ jobs:
           --cpu 4 \
           --memory 16Gi \
           --max-instances 1 \
-          --set-env-vars
+          --set-env-vars SERVER_NAME=${{ secrets.SERVER_NAME }},WORLD_NAME=${{ secrets.WORLD_NAME }},SERVER_PASS=${{ secrets.SERVER_PASS }}
