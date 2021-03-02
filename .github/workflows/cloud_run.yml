@@ -33,7 +33,7 @@ jobs:
     - uses: google-github-actions/setup-gcloud@v0.2.0
       with:
         service_account_key: ${{ secrets.GKE_SA_KEY }}
-        project_id: ${{ secrets.GKE_PROJECT }}
+        project_id: ${{ secrets.PROJECT_ID }}
 
     # Configure Docker to use the gcloud command-line tool as a credential
     # helper for authentication
@@ -44,14 +44,14 @@ jobs:
     - name: Build
       run: |-
         gcloud builds submit \
-          --tag "gcr.io/$PROJECT_ID/weasel-bot-backend"
+          --tag "gcr.io/$PROJECT_ID/boayrs-valheim-server"
         
     - name: Deploy
       run: |-
-        gcloud run deploy weasel-bot-backend \
-          --image "gcr.io/$PROJECT_ID/weasel-bot-backend" \
+        gcloud run deploy boayrs-valheim-server \
+          --image "gcr.io/$PROJECT_ID/boayrs-valheim-server" \
           --platform managed \
-          --region ${{ env.GKE_ZONE }} \
+          --region ${{ env.ZONE }} \
           --allow-unauthenticated \
           --cpu 4 \
           --memory 16Gi \
